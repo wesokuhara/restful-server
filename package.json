@@ -1,11 +1,10 @@
 {
-  "name": "mongo-rest-api",
+  "name": "restful-server",
   "version": "1.0.0",
   "author": "Wes Okuhara",
-  "description": "Boilerplate for a RESTful API using Node.js and MongoDB",
+  "description": "Boilerplate for a RESTful API server using Node.js and MongoDB",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wesokuhara/mongo-rest-api.git"
+    "type": "git"
   },
   "main": "app.js",
   "scripts": {
