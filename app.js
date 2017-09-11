@@ -15,10 +15,21 @@ app.use(logger('tiny'));
 app.use('/api', routes);
 
 mongoose.Promise = bluebird;
-mongoose.connect(config.mongo.url, { useMongoClient: true });
+const mongoUrl = process.env.MONGODB_URI || config.mongo.url;
+mongoose.connect(mongoUrl, { useMongoClient: true }, () => {
+  console.log('MongoDB connection started');
+});
 
-app.listen(config.server.port, () => {
-  console.log('Server listening on port', config.server.port);
+const port = process.env.PORT || config.server.port;
+app.listen(port, () => {
+  console.log('Server listening on port', port);
+});
+
+process.on('SIGINT', () => {
+  mongoose.connection.close(function () {
+    console.log('MongoDB connection closed');
+    process.exit(0);
+  });
 });
 
 module.exports = app;

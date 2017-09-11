@@ -16,7 +16,8 @@ const findById = (req, res) => {
 };
 
 const create = (req, res) => {
-  (new Book(req.body)).save()
+  const newBook = new Book(req.body);
+  newBook.save()
     .then(book => res.json(book))
     .catch(err => res.status(500).send(err));
 };
