@@ -22,6 +22,15 @@ const create = (req, res) => {
     .catch(err => res.status(500).send(err));
 };
 
+const updateById = (req, res) => {
+  Book.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(book => {
+      if (!book) res.status(404).send();
+      else res.json(book);
+    })
+    .catch(err => res.status(500).send(err));
+};
+
 const deleteById = (req, res) => {
   Book.findByIdAndRemove(req.params.id)
     .then(book => {
@@ -35,5 +44,6 @@ module.exports = {
   findAll,
   findById,
   create,
+  updateById,
   deleteById
 };

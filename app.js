@@ -17,7 +17,7 @@ app.use('/api', routes);
 mongoose.Promise = bluebird;
 const mongoUrl = process.env.MONGODB_URI || config.mongo.url;
 mongoose.connect(mongoUrl, { useMongoClient: true }, () => {
-  console.log('MongoDB connection started');
+  console.log('MongoDB connection started at', mongoUrl);
 });
 
 const port = process.env.PORT || config.server.port;

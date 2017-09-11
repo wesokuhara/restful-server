@@ -8,6 +8,8 @@ bookRouter.route('/')
 
 bookRouter.route('/:id')
   .get(bookController.findById)
+  .patch(bookController.updateById)
   .delete(bookController.deleteById);
+
 
 module.exports = bookRouter;
