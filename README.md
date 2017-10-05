@@ -2,7 +2,7 @@
 Boilerplate for a RESTful API server using Node.js and MongoDB.
 
 ## Installation
-After cloning this repo, install dependencies using:
+Clone this repo, then install dependencies using:
 ```
 npm install
 ```
