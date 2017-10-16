@@ -1,7 +1,7 @@
 const Book = require('../models/book');
 
-const findAll = (req, res) => {
-  Book.find()
+const find = (req, res) => {
+  Book.find(req.query)
     .then(books => res.json(books))
     .catch(err => res.status(500).send(err));
 };
@@ -17,7 +17,8 @@ const findById = (req, res) => {
 
 const create = (req, res) => {
   const newBook = new Book(req.body);
-  newBook.save()
+  newBook
+    .save()
     .then(book => res.json(book))
     .catch(err => res.status(500).send(err));
 };
@@ -41,7 +42,7 @@ const deleteById = (req, res) => {
 };
 
 module.exports = {
-  findAll,
+  find,
   findById,
   create,
   updateById,
