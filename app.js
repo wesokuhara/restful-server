@@ -4,7 +4,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
-const config = require('./config');
+const config = require('config');
 const routes = require('./server/routes');
 
 const app = express();
@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 process.on('SIGINT', () => {
-  mongoose.connection.close(function () {
+  mongoose.connection.close(() => {
     console.log('MongoDB connection closed');
     process.exit(0);
   });
