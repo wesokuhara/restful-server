@@ -10,6 +10,7 @@ bookRouter
 bookRouter
   .route('/:id')
   .get(bookController.findById)
+  .put(bookController.updateById)
   .patch(bookController.updateById)
   .delete(bookController.deleteById);
 

@@ -6,13 +6,15 @@ const mongoose = require('mongoose');
 const bluebird = require('bluebird');
 const config = require('config');
 const routes = require('./server/routes');
+const errorHandler = require('./server/controllers/errorHandler');
 
 const app = express();
 app.use(helmet());
+if (process.env.NODE_ENV !== 'test') app.use(logger('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(logger('tiny'));
 app.use('/api', routes);
+app.use(errorHandler);
 
 mongoose.Promise = bluebird;
 const mongoUrl = process.env.MONGODB_URI || config.mongo.url;
